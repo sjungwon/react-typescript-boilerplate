@@ -4,6 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "author": "sjungwon <heehos03@gmail.com>",
+  "scripts": {
+    "start": "webpack serve --open --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@babel/preset-env": "^7.18.6",
@@ -32,5 +36,18 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
+
