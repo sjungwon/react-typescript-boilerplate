@@ -50,14 +50,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "public", "*"),
-          to: "[path]/[name][ext]",
+          from: "./public/*",
         },
       ],
     }),

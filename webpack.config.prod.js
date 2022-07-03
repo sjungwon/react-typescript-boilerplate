@@ -60,8 +60,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "public", "*"),
-          to: "[path]/[name][ext]",
+          from: "./public/*",
         },
       ],
     }),
