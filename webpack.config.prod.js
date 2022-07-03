@@ -30,6 +30,31 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCSSExtractPlugin.loader,
+            options: {
+              publicPath: (resourcePath, context) => {
+                return path.relative(path.dirname(resourcePath), context) + "/";
+              },
+            },
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: [
@@ -49,7 +74,14 @@ module.exports = {
               },
             },
           },
-          "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
           "sass-loader",
         ],
       },

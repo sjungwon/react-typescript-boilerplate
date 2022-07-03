@@ -31,6 +31,22 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: [
@@ -43,7 +59,14 @@ module.exports = {
               },
             },
           },
-          "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
           "sass-loader",
         ],
       },
