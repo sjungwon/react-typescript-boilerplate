@@ -2,6 +2,7 @@ const path = require("path");
 const GetCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -73,15 +74,23 @@ module.exports = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "public/index.html",
+      favicon: "public/favicon.ico",
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: "./public/*",
+          filter: (filePath) =>
+            !filePath.includes(".html") && !filePath.includes("favicon.ico"),
         },
       ],
     }),
     new ESLintPlugin({
       extensions: ["ts", "tsx"],
+      emitWarning: false,
     }),
   ],
 };

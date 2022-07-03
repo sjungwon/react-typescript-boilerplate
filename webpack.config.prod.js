@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -41,9 +42,7 @@ module.exports = {
               },
             },
           },
-          {
-            loader: "css-loader",
-          },
+          "css-loader",
           {
             loader: "postcss-loader",
             options: {
@@ -88,12 +87,17 @@ module.exports = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: "public/index.html",
+      template: "public/index.html",
+    }),
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: ["dist"] }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: "./public/*",
+          filter: (filePath) => !filePath.includes(".html"),
         },
       ],
     }),
