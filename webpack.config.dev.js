@@ -12,9 +12,11 @@ module.exports = {
   },
   mode: "development",
   devServer: {
+    historyApiFallback: { index: "/" },
     compress: true,
     port: 3000,
   },
+  devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
   },
