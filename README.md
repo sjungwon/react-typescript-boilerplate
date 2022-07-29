@@ -13,7 +13,6 @@
 
 - TypeScript
 
-  - ts-loader
   - typescript
   - fork-ts-checker-webpack-plugin
     - speeds up TypeScript type checking
@@ -23,6 +22,7 @@
   - @babel/core
   - @babel/preset-env
   - @babel/preset-react
+  - @babel/preset-typescript
   - babel-loader
 
 - Style
