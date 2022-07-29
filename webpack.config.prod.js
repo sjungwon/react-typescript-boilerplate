@@ -12,6 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
+    publicPath: "/",
   },
   mode: "production",
   resolve: {
@@ -28,7 +29,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: ["babel-loader", "ts-loader"],
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/i,
@@ -88,7 +89,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "public/index.html",
+      filename: "index.html",
       template: "public/index.html",
     }),
     new ForkTsCheckerWebpackPlugin(),

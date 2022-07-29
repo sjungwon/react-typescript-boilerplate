@@ -9,12 +9,18 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
+    publicPath: "/",
   },
   mode: "development",
   devServer: {
     historyApiFallback: { index: "/" },
+    static: {
+      directory: path.join(__dirname, "dist"),
+      publicPath: path.join(__dirname, "dist", "public"),
+    },
     compress: true,
     port: 3000,
+    hot: true,
   },
   devtool: "source-map",
   resolve: {
@@ -31,7 +37,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: ["babel-loader", "ts-loader"],
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/i,
